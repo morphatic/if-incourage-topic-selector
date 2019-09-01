@@ -27,40 +27,40 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @uses {wp-editor} for WP editor styles.
  * @since 1.0.0
  */
-function if_incourage_topic_selector_cgb_block_assets() { // phpcs:ignore
+function if_incourage_topic_selector_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
 	wp_register_style(
-		'if_incourage_topic_selector-cgb-style-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-editor' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+		'if_incourage_topic_selector-style-css',
+		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
+		[ 'wp-editor' ],
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 	);
 
 	// Register block editor script for backend.
 	wp_register_script(
-		'if_incourage_topic_selector-cgb-block-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+		'if_incourage_topic_selector-block-js',
+		plugins_url( 'dist/blocks.build.js', dirname( __FILE__ ) ),
+		[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: File modification time.
 		true // Enqueue the script in the footer.
 	);
 
 	// Register block editor styles for backend.
 	wp_register_style(
-		'if_incourage_topic_selector-cgb-block-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+		'if_incourage_topic_selector-block-editor-css',
+		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
+		[ 'wp-edit-blocks' ],
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
 
-	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
+	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `ifitsGlobal` object.
 	wp_localize_script(
-		'if_incourage_topic_selector-cgb-block-js',
-		'cgbGlobal', // Array containing dynamic data for a JS Global.
+		'if_incourage_topic_selector-block-js',
+		'ifitsGlobal', // Array containing dynamic data for a JS Global.
 		[
 			'pluginDirPath' => plugin_dir_path( __DIR__ ),
 			'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-			// Add more data here that you want to access from `cgbGlobal` object.
+			// Add more data here that you want to access from `ifitsGlobal` object.
 		]
 	);
 
@@ -75,16 +75,13 @@ function if_incourage_topic_selector_cgb_block_assets() { // phpcs:ignore
 	 * @since 1.16.0
 	 */
 	register_block_type(
-		'cgb/block-if-incourage-topic-selector', array(
-			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'if_incourage_topic_selector-cgb-style-css',
-			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'if_incourage_topic_selector-cgb-block-js',
-			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'if_incourage_topic_selector-cgb-block-editor-css',
-		)
+		'morphatic/block-if-incourage-topic-selector', [
+			'style'         => 'if_incourage_topic_selector-style-css',        // front and admin
+			'editor_script' => 'if_incourage_topic_selector-block-js',         // editor only
+			'editor_style'  => 'if_incourage_topic_selector-block-editor-css', // editor only
+		]
 	);
 }
 
 // Hook: Block assets.
-add_action( 'init', 'if_incourage_topic_selector_cgb_block_assets' );
+add_action( 'init', 'if_incourage_topic_selector_block_assets' );

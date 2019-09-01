@@ -13,7 +13,7 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
 /**
- * Register: aa Gutenberg Block.
+ * Register: a Gutenberg Block.
  *
  * Registers a new block provided a unique name and an object defining its
  * behavior. Once registered, the block is made editor as an option to any
@@ -25,16 +25,10 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-if-incourage-topic-selector', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'if-incourage-topic-selector - CGB Block' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-	keywords: [
-		__( 'if-incourage-topic-selector — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
-	],
+registerBlockType( 'morphatic/block-if-incourage-topic-selector', {
+	title: __( 'Topic Selector' ), // Block title.
+	icon: 'video-alt', // Block icon → https://developer.wordpress.org/resource/dashicons/.
+	category: 'widgets', // Block category
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -48,7 +42,7 @@ registerBlockType( 'cgb/block-if-incourage-topic-selector', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		// Creates a <p class='wp-block-cgb-block-if-incourage-topic-selector'></p>.
+		// Creates a <p class='wp-block-if-incourage-topic-selector'></p>.
 		return (
 			<div className={ props.className }>
 				<p>— Hello from the backend.</p>

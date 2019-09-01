@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: if-incourage-topic-selector — CGB Gutenberg Block Plugin
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
- * Description: if-incourage-topic-selector — is a Gutenberg plugin created via create-guten-block.
- * Author: mrahmadawais, maedahbatool
- * Author URI: https://AhmadAwais.com/
+ * Plugin Name: inCourage Topic Selector
+ * Plugin URI: https://github.com/morphatic/if-incourage-topic-selector
+ * Description: A "Select a Topic" block widget for the inCourage website.
+ * Author: Morgan Benton
+ * Author URI: https://morphatic.com/
  * Version: 1.0.0
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt

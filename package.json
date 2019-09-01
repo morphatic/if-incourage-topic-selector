@@ -1,5 +1,6 @@
 {
-  "name": "if-incourage-topic-selector-cgb-guten-block",
+  "name": "if-incourage-topic-selector-block",
+  "description": "A \"Select a Topic\" block widget for the inCourage website.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
