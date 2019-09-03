@@ -93,3 +93,15 @@ function if_incourage_topic_selector_block_assets() { // phpcs:ignore
 
 // Hook: Block assets.
 add_action( 'init', 'if_incourage_topic_selector_block_assets' );
+
+function if_incourage_topic_selector_enqueue_frontend_scripts() {
+	wp_enqueue_script(
+		'if_incourage_topic_selector-frontend-js',
+		plugins_url( 'src/block/frontend.js', dirname( __FILE__ ) ),
+		[ 'jquery' ],
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: File modification time.
+		true // Enqueue the script in the footer.
+	);
+}
+
+add_action( 'wp_enqueue_scripts', 'if_incourage_topic_selector_enqueue_frontend_scripts' );
