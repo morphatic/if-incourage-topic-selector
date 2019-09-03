@@ -28,6 +28,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 function if_incourage_topic_selector_block_assets() { // phpcs:ignore
+	global $wp_post_types;
+	$wp_post_types[ 'hub' ]->show_in_rest = true;
+	$wp_post_types[ 'hub' ]->rest_base = 'hub';
+	$wp_post_types[ 'hub' ]->rest_controller_class = 'WP_REST_Posts_Controller';
+	$wp_post_types[ 'video' ]->show_in_rest = true;
+	$wp_post_types[ 'video' ]->rest_base = 'video';
+	$wp_post_types[ 'video' ]->rest_controller_class = 'WP_REST_Posts_Controller';
+
 	// Register block styles for both frontend + backend.
 	wp_register_style(
 		'if_incourage_topic_selector-style-css',
@@ -40,7 +48,7 @@ function if_incourage_topic_selector_block_assets() { // phpcs:ignore
 	wp_register_script(
 		'if_incourage_topic_selector-block-js',
 		plugins_url( 'dist/blocks.build.js', dirname( __FILE__ ) ),
-		[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],
+		[ 'wp-blocks', 'wp-components', 'wp-i18n', 'wp-editor', 'wp-element' ],
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: File modification time.
 		true // Enqueue the script in the footer.
 	);
