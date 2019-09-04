@@ -25,7 +25,22 @@
   const tabs = $( '.components-tab-panel__tabs', container );
   const tabScrollLeft = $( '.tabs-scroll-left', container );
   const tabScrollRight = $( '.tabs-scroll-right', container );
-  const scrollMax = 147;
+  const scrollMax = tabs.get( 0 ).scrollWidth - tabs.get( 0 ).clientWidth;
+
+  ( () => {
+    console.log( tabs.get( 0 ).scrollWidth, tabs.get( 0 ).clientWidth );
+    let bsw = 0;
+    let bcw = 0;
+    let w = 0;
+    tabs.children().each( ( i, b ) => {
+      console.log( b.scrollWidth, b.clientWidth, $( b ).width() );
+      bsw += b.scrollWidth;
+      bcw += b.clientWidth;
+      w += $( b ).width();
+    } );
+    console.log( bsw, bcw, w );
+    console.log( tabs.width(), tabs.children( 'button' ).width() );
+  } )();
 
   const updateScrollButtonVisibility = () => {
     // show the scroll left button, if necessary

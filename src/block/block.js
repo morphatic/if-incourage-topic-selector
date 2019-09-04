@@ -123,7 +123,8 @@ class TopicSelector extends Component {
         url: v.acf.video_url,
         runtime: v.acf.video_runtime,
         subvideos: v.acf.video_repeater && v.acf.video_repeater.map( sv => ( {
-          link: getYouTubeID( sv.subvideo_url ),
+          // link: getYouTubeID( sv.subvideo_url ), // the old way where it redirects to page with popup
+          link: sv.subvideo_url,
           runtime: sv.subvideo_runtime,
           title: sv.subvideo_title,
           thumb: sv.subvideo_custom_thumbnail.sizes.medium,
@@ -381,7 +382,8 @@ registerBlockType( 'morphatic/if-incourage-topic-selector', {
             // yes, so render content for them
             const subs = v.subvideos.map( sv => (
               <div className="subvid" key={ sv.link }>
-                <a href={ v.link + '?skip_ahead=' + sv.link }>
+                { /* <a href={ v.link + '?skip_ahead=' + sv.link }>  the OLD way */ }
+                <a data-lity href={ sv.link }>
                   <img src={ sv.thumb } alt={ sv.title } />
                 </a>
                 <h1 dangerouslySetInnerHTML={ { __html: sv.title } } />
