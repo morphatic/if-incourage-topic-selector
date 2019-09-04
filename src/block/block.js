@@ -224,6 +224,12 @@ class TopicSelector extends Component {
             <div className="subvidsmask">
               <div className="subvids">
                 { subs }
+                <button className="subvids-scroll subvids-scroll-left">
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                <button className="subvids-scroll subvids-scroll-right">
+                  <i className="fas fa-chevron-right"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -257,7 +263,9 @@ class TopicSelector extends Component {
       );
     } );
     return (
-      <div className="videos" key={ tab.id }>{ videos }</div>
+      <div className="videos" key={ tab.id }>
+        { videos }
+      </div>
     );
   }
 
@@ -386,6 +394,12 @@ registerBlockType( 'morphatic/if-incourage-topic-selector', {
                 <div className="subvidsmask">
                   <div className="subvids">
                     { subs }
+                    <button className="subvids-scroll subvids-scroll-left">
+                      <i className="fas fa-chevron-left"></i>
+                    </button>
+                    <button className="subvids-scroll subvids-scroll-right">
+                      <i className="fas fa-chevron-right"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -428,6 +442,12 @@ registerBlockType( 'morphatic/if-incourage-topic-selector', {
       // finally export the tab panel
       return (
         <div className="topics">
+          <button className="tabs-scroll tabs-scroll-left">
+            <i className="fas fa-chevron-double-left"></i>
+          </button>
+          <button className="tabs-scroll tabs-scroll-right">
+            <i className="fas fa-chevron-double-right"></i>
+          </button>
           { tabContainer }
           { content }
         </div>

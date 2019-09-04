@@ -12,5 +12,9 @@
     "uagb",
     "vhubs",
     "vids"
+  ],
+  "cSpell.ignoreWords": [
+    "cpath",
+    "csvg"
   ]
 }
