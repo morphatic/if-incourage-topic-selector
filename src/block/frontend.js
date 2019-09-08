@@ -25,39 +25,35 @@
   const tabs = $( '.components-tab-panel__tabs', container );
   const tabScrollLeft = $( '.tabs-scroll-left', container );
   const tabScrollRight = $( '.tabs-scroll-right', container );
-  const scrollMax = tabs.get( 0 ).scrollWidth - tabs.get( 0 ).clientWidth;
+  let shouldScroll = false;
 
   ( () => {
-    console.log( tabs.get( 0 ).scrollWidth, tabs.get( 0 ).clientWidth );
-    let bsw = 0;
-    let bcw = 0;
-    let w = 0;
+    let buttonsWidth = 0;
     tabs.children().each( ( i, b ) => {
-      console.log( b.scrollWidth, b.clientWidth, $( b ).width() );
-      bsw += b.scrollWidth;
-      bcw += b.clientWidth;
-      w += $( b ).width();
+      buttonsWidth += $( b ).width();
     } );
-    console.log( bsw, bcw, w );
-    console.log( tabs.width(), tabs.children( 'button' ).width() );
+    shouldScroll = tabs.get( 0 ).clientWidth < buttonsWidth;
   } )();
 
   const updateScrollButtonVisibility = () => {
-    // show the scroll left button, if necessary
-    if ( tabs.scrollLeft() > 0 && tabScrollLeft.is( ':not(:visible)' ) ) {
-      tabScrollLeft.show( 500 );
-    }
-    // hide the scroll left button, if necessary
-    if ( tabs.scrollLeft() === 0 && tabScrollLeft.is( ':visible' ) ) {
-      tabScrollLeft.hide( 500 );
-    }
-    // show the scroll right button, if necessary
-    if ( tabs.scrollLeft() < scrollMax && tabScrollRight.is( ':not(:visible)' ) ) {
-      tabScrollRight.show( 500 );
-    }
-    // hide the scroll right button, if necessary
-    if ( tabs.scrollLeft() === scrollMax && tabScrollRight.is( ':visible' ) ) {
-      tabScrollRight.hide( 500 );
+    if ( shouldScroll ) {
+      // show the scroll left button, if necessary
+      if ( tabScrollLeft.is( ':not(:visible)' ) ) {
+        tabScrollLeft.show( 500 );
+      }
+      // show the scroll right button, if necessary
+      if ( tabScrollRight.is( ':not(:visible)' ) ) {
+        tabScrollRight.show( 500 );
+      }
+    } else {
+      // hide the scroll left button, if necessary
+      if ( tabScrollLeft.is( ':visible' ) ) {
+        tabScrollLeft.hide( 500 );
+      }
+      // hide the scroll right button, if necessary
+      if ( tabScrollRight.is( ':visible' ) ) {
+        tabScrollRight.hide( 500 );
+      }
     }
   };
 

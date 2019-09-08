@@ -7,8 +7,8 @@
 .wp-block-morphatic-if-incourage-topic-selector  {
   color: $black;
   margin: 0 auto;
-  max-width: 1024px;
-  padding: 2rem;
+  max-width: 90%;
+  padding: 2rem 2rem 0;
   position: relative;
 }
 
@@ -21,6 +21,7 @@
   padding: 0 1.5rem;
   position: relative;
   white-space: nowrap;
+  width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -198,6 +199,7 @@ a.view-full-video-button {
 
 .videos.active section .sub .excerpt {
   padding-left: 50px;
+  padding-right: 50px;
 }
 
 .videos.active section .sub .subvidsmask:after {
@@ -283,6 +285,7 @@ a.view-full-video-button {
 /* mobile styles */
 @media only screen and (max-width: 960px) {
   .wp-block-morphatic-if-incourage-topic-selector {
+    max-width: unset;
     padding: 0;
     width: 94vw;
   }
@@ -339,6 +342,7 @@ a.view-full-video-button {
 
   .videos.active section .sub .excerpt {
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .videos.active section .sub .excerpt p {

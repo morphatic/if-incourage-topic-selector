@@ -127,6 +127,7 @@ class TopicSelector extends Component {
         categories: v.categories, // maybe leave out?
         url: v.acf.video_url,
         runtime: v.acf.video_runtime,
+        order: v.acf.video_order || 100,
         subvideos: v.acf.video_repeater && v.acf.video_repeater.map( sv => ( {
           // link: getYouTubeID( sv.subvideo_url ), // the old way where it redirects to page with popup
           link: sv.subvideo_url,
@@ -273,6 +274,7 @@ class TopicSelector extends Component {
         </section>
       );
     } );
+    // sort videos by
     return (
       <div className="videos" key={ tab.id }>
         { videos }
@@ -387,9 +389,18 @@ registerBlockType( 'morphatic/if-incourage-topic-selector', {
           { tabs }
         </div>
       );
+      const vidSort = ( v1, v2 ) => {
+        if ( v1.order < v2.order ) {
+          return -1;
+        }
+        if ( v1.order > v2.order ) {
+          return 1;
+        }
+        return 0;
+      };
       // then, generate the tabs content
       const content = catIds.map( ( tab, idx ) => {
-        const vids = Object.values( videos[ tab ] ).map( v => {
+        const vids = Object.values( videos[ tab ] ).sort( vidSort ).map( v => {
           // declare a "sub" section to hold subvideos or the excerpt
           let sub;
           // do we have subvideos?
