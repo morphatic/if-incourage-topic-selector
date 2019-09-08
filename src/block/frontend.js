@@ -61,7 +61,17 @@
     }
   };
 
-  updateScrollButtonVisibility();
+  const setActiveTab = () => {
+    // get the query string
+    const searchParams = new URLSearchParams( window.location.search );
+    // is there an "active_tab" param?
+    if ( searchParams.has( 'active_tab' ) ) {
+      // get the id of the tab button
+      const tabId = '#' + searchParams.get( 'active_tab' );
+      // programmatically click it
+      $( tabId ).click();
+    }
+  };
 
   // setup scroll behaviors for the tab container
   tabs.on( 'scroll', updateScrollButtonVisibility );
@@ -96,14 +106,15 @@
     $( id, container ).addClass( 'active' );
   } );
 
-  // hide the subvid scrollers if necessary
-  ( () => {
+  const maybeHideSubvidScrollButtons = () => {
+    // hide the subvid scrollers if necessary
     $( '.subvids-scroll', container ).each( ( i, svs ) => {
       if ( $( svs ).siblings( '.subvid' ).length > 2 ) {
         $( svs ).css( 'visibility', 'visible' );
       }
     } );
-  } )();
+  };
+
   $( '.subvids-scroll-left', container ).on( 'click', function() {
     $( this ).parent().animate( { scrollLeft: '-=230px' } );
   } );
@@ -111,4 +122,13 @@
   $( '.subvids-scroll-right', container ).on( 'click', function() {
     $( this ).parent().animate( { scrollLeft: '+=230px' } );
   } );
+
+  /**
+   * Actions to perform when the page loads
+   */
+  ( () => {
+    updateScrollButtonVisibility();
+    setActiveTab();
+    maybeHideSubvidScrollButtons();
+  } )();
 } )( jQuery );
